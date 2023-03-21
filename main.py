@@ -1,33 +1,27 @@
-#liters h^-1 to m^3 s^1
-def litres_to_cubic_meters(litres_per_hour):
-    return litres_per_hour / 1000
+from lib import litres_per_min_to_cubic_metre_per_sec
+from tkinter import Tk
+from enum import IntEnum
+
+class Volume(IntEnum):
+    CUBIC_METRE = 0
+
+class Capacity(IntEnum):
+    LITRE = 0
+
+class Time(IntEnum):
+    SECOND = 0
 
 
-def hours_to_seconds(hours):
-    return hours / 3600
+root = Tk()
+root.title("Volumetric Flow Rate Converter")
+root.geometry("400x400")
 
 
-def litres_per_hour_to_cubic_metre_per_sec(value):
-    liters_to_cubic_metres = litres_to_cubic_meters(value) # lph / 1000
-    cubic_metres_per_second = hours_to_seconds(liters_to_cubic_metres) # cbmps / 3600
-    return cubic_metres_per_second
+# Volume Drop Down
+volume_label = Label(root, text="Volume")
+volume_label.grid(row=0, column=0)
 
+volume_dropdown = OptionMenu(root, Volume, Volume.CUBIC_METRE)
+volume_dropdown.grid(row=1, column=0)
 
-print(litres_per_hour_to_cubic_metre_per_sec(57))
-
-# liters min^-1 to m^3 s^1
-def litres_to_cubic_meters(litres_per_hour):
-    return litres_per_hour / 1000
-
-
-def minutes_to_seconds(minutes):
-    return minutes / 60
-
-
-def litres_per_min_to_cubic_metre_per_sec(value):
-    liters_to_cubic_metres = litres_to_cubic_meters(value) # lph / 1000
-    cubic_metres_per_second = minutes_to_seconds(liters_to_cubic_metres) # cbmps / 3600
-    return cubic_metres_per_second
-
-
-print(litres_per_hour_to_cubic_metre_per_sec(57))
+root.mainloop()
